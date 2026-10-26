@@ -37,7 +37,12 @@ case "${1:-}" in
         device/oneplus/macan-kernel
     fi
     export ALLOW_MISSING_DEPENDENCIES=true
-    export USE_CCACHE=0
+    if [ -n "${CCACHE_DIR:-}" ]; then
+      export USE_CCACHE=1
+      ccache -M 8G
+    else
+      export USE_CCACHE=0
+    fi
     export MALLOC_ARENA_MAX=2
     export SOONG_GOMEMLIMIT=8GiB
     export GOMEMLIMIT=8GiB
