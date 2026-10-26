@@ -30,10 +30,15 @@ case "${1:-}" in
     ;;
   build)
     cd "${source_root}"
+    # 自动下载 Ace 6T 预编译内核
+    if [ ! -d device/oneplus/macan-kernel ]; then
+      git clone --depth=1 -b lineage-24.0 \
+        https://github.com/OnePlus-SM8850-Development/android_device_oneplus_macanc-kernel.git \
+        device/oneplus/macan-kernel
+    fi
     export ALLOW_MISSING_DEPENDENCIES=true
     export USE_CCACHE=0
     export MALLOC_ARENA_MAX=2
-    # Soong sanitizes its child environment. Use its explicit forwarding option.
     export SOONG_GOMEMLIMIT=8GiB
     export GOMEMLIMIT=8GiB
     export GOGC=50
@@ -42,16 +47,16 @@ case "${1:-}" in
     export NINJA_HIGHMEM_NUM_JOBS=1
     set +u
     source build/envsetup.sh
-    lunch twrp_sm8850
+    lunch twrp_macan
     mka -j"${BUILD_JOBS:-2}" installclean
     mka -j"${BUILD_JOBS:-2}" recoveryimage
     ;;
   package)
-    product_root="${source_root}/out/target/product/sm8850"
+    product_root="${source_root}/out/target/product/macan"
     python3 "${builder_root}/scripts/verify-image.py" "${product_root}" > "${dist_root}/verification.json"
-    cp "${product_root}/recovery.img" "${dist_root}/YARP-sm8850-fb0349d-recovery.img"
+    cp "${product_root}/recovery.img" "${dist_root}/YARP-macan-recovery.img"
     cd "${dist_root}"
-    sha256sum YARP-sm8850-fb0349d-recovery.img > SHA256SUMS.txt
+    sha256sum YARP-macan-recovery.img > SHA256SUMS.txt
     cat verification.json
     ;;
   *)
