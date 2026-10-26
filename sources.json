@@ -11,8 +11,8 @@
     {"name": "android_external_libwebm", "path": "external/libwebm", "revision": "99fcd14602ba76998d086b602f29a243e1d5c835"}
   ],
   "device": {
-    "name": "twrp_device_xiaomi_sm8850",
-    "path": "device/xiaomi/sm8850",
-    "revision": "8023035649595341e26f9b924928c0b0cd67fbd2"
+    "name": "android_device_oneplus_macan",
+    "path": "device/oneplus/macan",
+    "revision": "main"
   }
 }
