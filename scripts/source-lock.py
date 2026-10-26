@@ -18,11 +18,13 @@ def main():
                 **project, "upstream": "refs/heads/twrp-16.0"
             })
         ET.SubElement(manifest, "remote", {
-            "name": "yarp-device", "fetch": "https://github.com/TWRP-Test"
+            "name": "yarp-device", "fetch": "https://github.com/mzsy123"
         })
         ET.SubElement(manifest, "project", {
-            **lock["device"], "remote": "yarp-device",
-            "upstream": "refs/heads/twrp-16.0"
+            "name": lock["device"]["name"],
+            "path": lock["device"]["path"],
+            "revision": lock["device"].get("revision", "main"),
+            "remote": "yarp-device",
         })
         target = source / ".repo/local_manifests/yarp-pins.xml"
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -30,7 +32,7 @@ def main():
         print(f"Wrote {target}")
     elif command == "verify":
         projects = [{"path": ".repo/manifests", **lock["manifest"]}]
-        projects += lock["projects"] + [lock["device"]]
+        projects += lock["projects"]
         for project in projects:
             actual = subprocess.check_output(
                 ["git", "-C", str(source / project["path"]), "rev-parse", "HEAD"],
