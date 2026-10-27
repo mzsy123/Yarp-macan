@@ -1,5 +1,8 @@
 # YARP TWRP for OnePlus Ace 6T (macan)
 
+警告⚠️免责声明
+本项目产物暂未在真机上开机、触摸与解密。刷入 recovery 可能变砖或丢失数据，请自行备份并自担风险。
+
 在 GitHub Actions 云端构建 OnePlus Ace 6T（macan）的 TWRP recovery，界面使用 TWRP-Test `twrp-16.0` 分支内置的 **YARP（GUI2，基于 LVGL）**。全程云端编译，本地无需安装任何工具链。
 
 > 本项目 fork 自 [MDXRosmontis/yarp-sm8850](https://github.com/MDXRosmontis/yarp-sm8850)，原版面向小米 SM8850，本仓库改为面向 OnePlus Ace 6T。
@@ -66,8 +69,6 @@ fastboot reboot recovery
 •
 TWRP-Test（twrp-16.0 / YARP GUI2）
 •
-MDXRosmontis/yarp-sm8850（构建脚手架）
+MDXRosmontis/yarp-sm8845（构建脚手架）
 •
-OnePlus-SM8850-Development（内核与模块）
-免责声明
-本项目产物未在任何真机上验证过开机、触摸与解密。刷入 recovery 可能变砖或丢失数据，请自行备份并自担风险。
+OnePlus-SM8845-Development（内核与模块）
