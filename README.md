@@ -66,9 +66,9 @@ adb shell su -c 'dd if=/dev/block/by-name/recovery_a of=/sdcard/recovery_a_stock
 fastboot flash recovery_a YARP-macan-recovery.img
 fastboot reboot recovery
 致谢
-•
+
 TWRP-Test（twrp-16.0 / YARP GUI2）
-•
-MDXRosmontis/yarp-sm8845（构建脚手架）
-•
-OnePlus-SM8845-Development（内核与模块）
+
+MDXRosmontis/yarp-sm8850（构建脚手架）
+
+OnePlus-SM8850-Development（内核与模块）
