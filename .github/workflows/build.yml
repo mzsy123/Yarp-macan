@@ -1,4 +1,4 @@
-name: Build YARP SM8850
+name: Build YARP macan
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: yarp-sm8850-${{ github.ref }}
+  group: yarp-macan-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -63,7 +63,7 @@ jobs:
       - name: Upload recovery image and source record
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: YARP-sm8850-${{ github.run_id }}
+          name: YARP-macan-${{ github.run_id }}
           path: dist/
           if-no-files-found: error
           compression-level: 0
